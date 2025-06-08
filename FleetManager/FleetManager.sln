@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetManagerWebApp", "FleetManagerWebApp\FleetManagerWebApp.csproj", "{C35E3CEF-9459-42B8-8DFA-0C4391DC3C0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FleetManagerWebApp", "FleetManagerWebApp\FleetManagerWebApp.csproj", "{C35E3CEF-9459-42B8-8DFA-0C4391DC3C0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetManager.Domain", "FleetManagerData\FleetManager.Domain.csproj", "{EF43A894-2805-451B-AA85-998BBDC3DB01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FleetManager.Domain", "FleetManagerData\FleetManager.Domain.csproj", "{EF43A894-2805-451B-AA85-998BBDC3DB01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetManagerTest", "FleetManagerTest\FleetManagerTest.csproj", "{B03E3230-F775-4210-8BE7-511AFD4B208C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FleetManagerTest", "FleetManagerTest\FleetManagerTest.csproj", "{B03E3230-F775-4210-8BE7-511AFD4B208C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetManager.Infrastructure", "FleetManager.Infrastructure\FleetManager.Infrastructure.csproj", "{E8E22F81-9E99-4E22-82C8-3C0A35B7482B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FleetManager.Application", "FleetManaget.Application\FleetManager.Application.csproj", "{B1851705-1CB0-4235-87D7-CB73360C5E22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetManager.Application", "FleetManaget.Application\FleetManager.Application.csproj", "{B1851705-1CB0-4235-87D7-CB73360C5E22}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetManager.Infrastructure", "FleetManager.Infrastructure\FleetManager.Infrastructure.csproj", "{C3588315-C037-469D-A017-4D93E14E8E2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,14 +31,14 @@ Global
 		{B03E3230-F775-4210-8BE7-511AFD4B208C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B03E3230-F775-4210-8BE7-511AFD4B208C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B03E3230-F775-4210-8BE7-511AFD4B208C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E8E22F81-9E99-4E22-82C8-3C0A35B7482B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E8E22F81-9E99-4E22-82C8-3C0A35B7482B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E8E22F81-9E99-4E22-82C8-3C0A35B7482B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E8E22F81-9E99-4E22-82C8-3C0A35B7482B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B1851705-1CB0-4235-87D7-CB73360C5E22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B1851705-1CB0-4235-87D7-CB73360C5E22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1851705-1CB0-4235-87D7-CB73360C5E22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1851705-1CB0-4235-87D7-CB73360C5E22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3588315-C037-469D-A017-4D93E14E8E2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3588315-C037-469D-A017-4D93E14E8E2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3588315-C037-469D-A017-4D93E14E8E2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3588315-C037-469D-A017-4D93E14E8E2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

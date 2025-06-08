@@ -1,32 +1,24 @@
-﻿using FleetManager.Domain.Entities;
-using FleetManager.Application.Interfaces;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using System.Runtime.InteropServices;
-using FleetManagerWebApp.Data;
+﻿using FleetManager.Application.Interfaces;
 using FleetManager.Application.Ultility;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using FleetManager.Domain.Entities;
+using FleetManager.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace FleetManager.Infrastructure.Repositories
 {
     public class FleetManagerRepository : IFleetManagerRepository
     {
 
-        private readonly FleetManagerWebAppContext _context;
+        private readonly FleetDbContext _context;
 
-        public FleetManagerRepository(FleetManagerWebAppContext context)
+        public FleetManagerRepository(FleetDbContext context)
         {
             _context = context;
-        }               
+        }
 
         private bool VehicleExists(int id)
         {
-            return _context.Vehicle.Any(e => e.Id == id);
+            return _context.Vehicles.Any(e => e.Id == id);
         }
 
 
@@ -43,15 +35,15 @@ namespace FleetManager.Infrastructure.Repositories
         public async Task<bool> Delete(Vehicle vehicle)
         {
             if (vehicle.Id == null)
-                return false;                 
+                return false;
 
-            _context.Vehicle.Remove(vehicle);
+            _context.Vehicles.Remove(vehicle);
             return await _context.SaveChangesAsync() > 0;
         }
 
         public async Task<IEnumerable<Vehicle>> GetAll()
         {
-            return await _context.Vehicle.ToListAsync();
+            return await _context.Vehicles.ToListAsync();
         }
 
         public async Task<Vehicle> GetChassisId(int id)
@@ -59,7 +51,7 @@ namespace FleetManager.Infrastructure.Repositories
             if (id == null)
                 return null;
 
-            var vehicle = await _context.Vehicle.FirstAsync(x => x.ChassisId.Number == id);
+            var vehicle = await _context.Vehicles.FirstAsync(x => x.ChassisId.Number == id);
             if (vehicle == null)
                 return null;
 
@@ -73,7 +65,7 @@ namespace FleetManager.Infrastructure.Repositories
                 return false;
             }
 
-            var formerVehicle = await _context.Vehicle.FindAsync(vehicle.Id);
+            var formerVehicle = await _context.Vehicles.FindAsync(vehicle.Id);
             if (vehicle == null)
             {
                 return false;

@@ -2,7 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using FleetManagerWebApp.Data;
 using FleetManager.Application.Interfaces;
-using FleetManager.Infrastructure.Repository;
+using FleetManager.Infrastructure.Data;
+
 namespace FleetManagerWebApp
 {
     public class Program
