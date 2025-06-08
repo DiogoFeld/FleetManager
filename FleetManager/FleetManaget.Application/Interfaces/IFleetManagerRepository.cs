@@ -11,8 +11,5 @@ namespace FleetManager.Application.Interfaces
     {
         Task<Vehicle> GetChassisId(int id);
 
-
-
-
     }
 }

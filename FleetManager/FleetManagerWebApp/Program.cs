@@ -11,8 +11,9 @@ namespace FleetManagerWebApp
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
             builder.Services.AddDbContext<FleetManagerWebAppContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("FleetManagerWebAppContext") ?? throw new InvalidOperationException("Connection string 'FleetManagerWebAppContext' not found.")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("FleetManager") ?? throw new InvalidOperationException("Connection string 'FleetManagerWebAppContext' not found.")));
                         
             
             builder.Services.AddScoped<IFleetManagerRepository, FleetManagerRepository>();

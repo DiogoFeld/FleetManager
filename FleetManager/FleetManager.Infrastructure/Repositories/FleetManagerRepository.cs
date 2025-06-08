@@ -80,5 +80,12 @@ namespace FleetManager.Infrastructure.Repositories
             return await _context.SaveChangesAsync() > 0;
         }
 
+        public async Task<Vehicle> GetById(int id)
+        {
+            var resultVehicle = await _context.Vehicles.FirstOrDefaultAsync(x => x.Id == id);
+            return resultVehicle;
+        }
+
+
     }
 }

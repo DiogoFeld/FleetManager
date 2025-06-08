@@ -7,43 +7,24 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FleetManager.Domain.Entities;
 using FleetManagerWebApp.Data;
+using FleetManager.Application.Interfaces;
 
 namespace FleetManagerWebApp.Controllers
 {
     public class FleetVehiclesController : Controller
     {
-        private readonly FleetManagerWebAppContext _context;
+        readonly IFleetManagerRepository _fleetManager;
 
-        public FleetVehiclesController(FleetManagerWebAppContext context)
+        public FleetVehiclesController(IFleetManagerRepository fleetManager)
         {
-            _context = context;
+            this._fleetManager = fleetManager;
         }
 
-        // GET: FleetVehicles
         public async Task<IActionResult> Index()
         {
-            return View();
-
-            return View(await _context.Vehicle.ToListAsync());
+            return View(await _fleetManager.GetAll());
         }
 
-        // GET: FleetVehicles/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (vehicle == null)
-            {
-                return NotFound();
-            }
-
-            return View(vehicle);
-        }
 
         // GET: FleetVehicles/Create
         public IActionResult Create()
@@ -51,31 +32,23 @@ namespace FleetManagerWebApp.Controllers
             return View();
         }
 
-        // POST: FleetVehicles/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Type,NumberOfPassengers,Color")] Vehicle vehicle)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(vehicle);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(vehicle);
+            bool result = await _fleetManager.Add(vehicle);
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET: FleetVehicles/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var vehicle = await _context.Vehicle.FindAsync(id);
+            var vehicle = await _fleetManager.GetById(id);
             if (vehicle == null)
             {
                 return NotFound();
@@ -83,51 +56,29 @@ namespace FleetManagerWebApp.Controllers
             return View(vehicle);
         }
 
-        // POST: FleetVehicles/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Type,NumberOfPassengers,Color")] Vehicle vehicle)
         {
-            if (id != vehicle.Id)
-            {
-                return NotFound();
-            }
 
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    _context.Update(vehicle);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!VehicleExists(vehicle.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                _fleetManager.Update(vehicle);
             }
-            return View(vehicle);
+            catch (DbUpdateConcurrencyException)
+            { }
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET: FleetVehicles/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+
+        public async Task<IActionResult> Delete(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var vehicle = await _fleetManager.GetById(id);
             if (vehicle == null)
             {
                 return NotFound();
@@ -136,24 +87,18 @@ namespace FleetManagerWebApp.Controllers
             return View(vehicle);
         }
 
-        // POST: FleetVehicles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var vehicle = await _context.Vehicle.FindAsync(id);
+            var vehicle = await _fleetManager.GetById(id);
             if (vehicle != null)
             {
-                _context.Vehicle.Remove(vehicle);
+                _fleetManager.Delete(vehicle);
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool VehicleExists(int id)
-        {
-            return _context.Vehicle.Any(e => e.Id == id);
-        }
     }
 }
