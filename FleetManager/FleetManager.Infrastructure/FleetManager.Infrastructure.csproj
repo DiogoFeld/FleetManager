@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FleetManagerData\FleetManager.Domain.csproj" />
+    <ProjectReference Include="..\FleetManagerWebApp\FleetManagerWebApp.csproj" />
     <ProjectReference Include="..\FleetManaget.Application\FleetManager.Application.csproj" />
   </ItemGroup>
 

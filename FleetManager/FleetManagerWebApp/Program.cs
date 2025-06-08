@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using FleetManagerWebApp.Data;
+using FleetManager.Application.Interfaces;
+using FleetManager.Infrastructure.Repository;
 namespace FleetManagerWebApp
 {
     public class Program
@@ -10,9 +12,14 @@ namespace FleetManagerWebApp
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<FleetManagerWebAppContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("FleetManagerWebAppContext") ?? throw new InvalidOperationException("Connection string 'FleetManagerWebAppContext' not found.")));
-
+                        
+            
+            builder.Services.AddScoped<IFleetManagerRepository, FleetManagerRepository>();
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+
+
 
             var app = builder.Build();
 

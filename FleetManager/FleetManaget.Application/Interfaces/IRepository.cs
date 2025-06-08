@@ -9,9 +9,9 @@ namespace FleetManager.Application.Interfaces
 {
     public interface IRepository<T> where T : class
     {
-        bool Add(T entity);
-        IEnumerable<T> GetAll();
-        bool Update(T entity);
-        void Delete(T entity);
+         Task<bool> Add(T entity);
+        Task<IEnumerable<T>> GetAll();
+         Task<bool> Update(T entity);
+         Task<bool> Delete(T entity);
     }
 }

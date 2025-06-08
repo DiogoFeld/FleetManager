@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace FleetManager.Application.Interfaces
 {
-    public interface IFleetManagerRepository
+    public interface IFleetManagerRepository : IRepository<Vehicle>
     {
-        public Vehicle GetChassisId(int id);
+        Task<Vehicle> GetChassisId(int id);
+
+
+
+
     }
 }
