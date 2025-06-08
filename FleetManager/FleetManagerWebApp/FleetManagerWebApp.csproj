@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FleetManager.Infrastructure\FleetManager.Infrastructure.csproj" />
     <ProjectReference Include="..\FleetManagerData\FleetManager.Domain.csproj" />
     <ProjectReference Include="..\FleetManaget.Application\FleetManager.Application.csproj" />
   </ItemGroup>
