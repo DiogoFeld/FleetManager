@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\FleetManagerData\FleetManager.Domain.csproj" />
     <ProjectReference Include="..\FleetManaget.Application\FleetManager.Application.csproj" />
   </ItemGroup>
