@@ -21,6 +21,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Color)
             </th>
+               <th>
+                @Html.DisplayNameFor(model => model.ChassisId.Series)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChassisId.Number)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -38,7 +44,6 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
