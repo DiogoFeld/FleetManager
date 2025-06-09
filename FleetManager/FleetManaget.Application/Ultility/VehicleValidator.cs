@@ -9,12 +9,12 @@ namespace FleetManager.Application.Ultility
 {
     public static class VehicleValidator
     {
-        public static bool IsVehicleValid(Vehicle vehicle)
+        public static bool IsVehicleValid(Vehicle vehicle) => vehicle switch
         {
-            bool isValid = true;
-
-
-            return isValid;
-        }
+            { _Type: TypeVehicle.Car, NumberOfPassengers: <= 4 } => true,
+            { _Type: TypeVehicle.Truck, NumberOfPassengers: <= 1 } => true,
+            { _Type: TypeVehicle.Bus, NumberOfPassengers: <= 42 } => true,
+            _ => false
+        };
     }
 }

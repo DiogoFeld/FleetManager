@@ -13,7 +13,7 @@ namespace FleetManager.Domain.Entities
         [Key]
         public int Id { get; set; }
         public ChassisId ChassisId { get; set; }
-        public TypeVehicle Type { get; set; }
+        public TypeVehicle _Type { get; set; }
 
         [Required]
         [DisplayName("Number Of Passengers")]

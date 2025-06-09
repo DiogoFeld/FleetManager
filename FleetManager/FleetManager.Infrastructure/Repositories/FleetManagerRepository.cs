@@ -65,19 +65,24 @@ namespace FleetManager.Infrastructure.Repositories
                 return false;
             }
 
-            var formerVehicle = await _context.Vehicles.FindAsync(vehicle.Id);
-            if (vehicle == null)
+
+            if (VehicleValidator.IsVehicleValid(vehicle))
             {
-                return false;
+                var formerVehicle = await _context.Vehicles.FindAsync(vehicle.Id);
+                if (vehicle == null)
+                {
+                    return false;
+                }
+
+                formerVehicle.ChassisId.Series = vehicle.ChassisId.Series;
+                formerVehicle.ChassisId.Number = vehicle.ChassisId.Number;
+                formerVehicle.NumberOfPassengers = vehicle.NumberOfPassengers;
+                formerVehicle.Color = vehicle.Color;
+                formerVehicle._Type = vehicle._Type;
+
+                return await _context.SaveChangesAsync() > 0;
             }
-
-            formerVehicle.ChassisId.Series = vehicle.ChassisId.Series;
-            formerVehicle.ChassisId.Number = vehicle.ChassisId.Number;
-            formerVehicle.NumberOfPassengers = vehicle.NumberOfPassengers;
-            formerVehicle.Color = vehicle.Color;
-            formerVehicle.Type = vehicle.Type;
-
-            return await _context.SaveChangesAsync() > 0;
+            return false;
         }
 
         public async Task<Vehicle> GetById(int id)
