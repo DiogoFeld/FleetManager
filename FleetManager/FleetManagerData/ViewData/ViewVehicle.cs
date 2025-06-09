@@ -13,7 +13,6 @@ namespace FleetManager.Domain.ViewData
     public class ViewVehicle
     {        
         public int Id { get; set; }
-        public ChassisId ChassisId { get; set; }
 
         public TypeVehicle _Type { get; set; }
 

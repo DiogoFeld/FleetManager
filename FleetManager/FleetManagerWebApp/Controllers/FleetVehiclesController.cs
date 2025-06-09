@@ -4,6 +4,7 @@ using FleetManager.Domain.Entities;
 using FleetManager.Application.Interfaces;
 using FleetManager.Domain.ViewData;
 using FleetManager.Application.Ultility;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FleetManagerWebApp.Controllers
 {
@@ -22,18 +23,19 @@ namespace FleetManagerWebApp.Controllers
         }
 
 
-        // GET: FleetVehicles/Create
         public IActionResult Create()
         {
+            ViewBag.VehiclesType = EnumExtensionTypevehicle.GetListEnum(); 
+
             return View(); 
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Type,NumberOfPassengers,Color,Number,Series")] ViewVehicle viewVehicle)
+        public async Task<IActionResult> Create([Bind("Id,_Type,NumberOfPassengers,Color,Number,Series")] ViewVehicle viewVehicle)
         {
-            Vehicle vehicle = ViewVehicleParser.Parse(viewVehicle);
+            Vehicle vehicle = ViewVehicleParser.ParseToVehicle(viewVehicle);
 
             bool result = await _fleetManager.Add(vehicle);
             return RedirectToAction(nameof(Index));
@@ -51,13 +53,18 @@ namespace FleetManagerWebApp.Controllers
             {
                 return NotFound();
             }
-            return View(vehicle);
+
+            ViewVehicle viewVehicle = ViewVehicleParser.ParseFromVehicle(vehicle);
+            ViewBag.VehiclesType = EnumExtensionTypevehicle.GetListEnum();
+
+            return View(viewVehicle);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Type,NumberOfPassengers,Color")] Vehicle vehicle)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,_Type,NumberOfPassengers,Color,Series,Number")] ViewVehicle viewVehicle)
         {
+            var vehicle = ViewVehicleParser.ParseToVehicle(viewVehicle);
 
             try
             {
@@ -77,6 +84,8 @@ namespace FleetManagerWebApp.Controllers
             }
 
             var vehicle = await _fleetManager.GetById(id);
+            var vehicleView = ViewVehicleParser.ParseFromVehicle(vehicle);
+
             if (vehicle == null)
             {
                 return NotFound();
@@ -99,4 +108,22 @@ namespace FleetManagerWebApp.Controllers
         }
 
     }
+}
+
+
+
+static public class EnumExtensionTypevehicle
+{
+    public static List<SelectListItem> GetListEnum()
+    {
+        return Enum.GetValues(typeof(TypeVehicle))
+               .Cast<TypeVehicle>()
+               .Select(e => new SelectListItem
+               {
+                   Value = e.ToString(),
+                   Text = e.ToString()
+               })
+               .ToList();
+    }
+
 }

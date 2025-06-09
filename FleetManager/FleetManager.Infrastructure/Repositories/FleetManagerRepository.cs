@@ -29,7 +29,9 @@ namespace FleetManager.Infrastructure.Repositories
                 _context.Add(vehicle);
                 return await _context.SaveChangesAsync() > 0;
             }
-            return true;
+            else
+                return false;
+
         }
 
         public async Task<bool> Delete(Vehicle vehicle)
@@ -60,27 +62,30 @@ namespace FleetManager.Infrastructure.Repositories
 
         public async Task<bool> Update(Vehicle vehicle)
         {
-            if (vehicle.Id == null)
+            try
             {
-                return false;
-            }
-
-
-            if (VehicleValidator.IsVehicleValid(vehicle))
-            {
-                var formerVehicle = await _context.Vehicles.FindAsync(vehicle.Id);
-                if (vehicle == null)
+                if (vehicle.Id == null)
                 {
                     return false;
                 }
 
-                formerVehicle.ChassisId.Series = vehicle.ChassisId.Series;
-                formerVehicle.ChassisId.Number = vehicle.ChassisId.Number;
-                formerVehicle.NumberOfPassengers = vehicle.NumberOfPassengers;
-                formerVehicle.Color = vehicle.Color;
-                formerVehicle._Type = vehicle._Type;
+                if (VehicleValidator.IsVehicleValid(vehicle))
+                {
+                    var formerVehicle = _context.Update(vehicle);
+                    var result = await _context.SaveChangesAsync() > 0;
 
-                return await _context.SaveChangesAsync() > 0;
+                    if (vehicle == null)
+                    {
+                        return false;
+                    }
+
+                    return false;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
             return false;
         }
