@@ -2,12 +2,6 @@
 
 Este é um sistema de gerenciamento de frota (Fleet Manager) desenvolvido com ASP.NET Core MVC e Entity Framework Core. Ele permite o cadastro, edição, listagem e exclusão de veículos, incluindo atributos como tipo, cor, número de passageiros e identificação de chassi (série e número).
 
-## 📸 Imagens da Interface
-
-Veja abaixo uma prévia da interface do sistema:
-
-!(Images/PMConsole.jpg)
-
 ## ⚙️ Funcionalidades principais
 
 - Cadastro de novos veículos
@@ -30,9 +24,10 @@ Antes de rodar o projeto, é necessário garantir que o banco de dados está atu
 1. Abra o terminal na pasta raiz do projeto (onde está o arquivo `.csproj`).
 2. Execute os seguintes comandos:
 
-```bash
-# Para adicionar uma nova migration (se necessário)
-dotnet ef migrations add NomeDaMigration
-
 # Para aplicar as migrations ao banco de dados
 dotnet ef database update
+
+## 📸 Ajuste para o update
+Provavelmente será necessário realizar uma mudança no diretório de qual projeto esta realizando o update:
+
+![image]:https://github.com/DiogoFeld/FleetManager/blob/main/Images/PMConsole.png
