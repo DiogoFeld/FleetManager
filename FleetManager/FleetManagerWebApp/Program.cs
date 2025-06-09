@@ -1,10 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using FleetManagerWebApp.Data;
-using FleetManager.Application.Interfaces;
-using FleetManager.Infrastructure.Repositories;
-using FleetManager.Infrastructure.Data;
-using FleetManager.Infrastructure;
+﻿using FleetManager.Infrastructure;
 
 namespace FleetManagerWebApp
 {

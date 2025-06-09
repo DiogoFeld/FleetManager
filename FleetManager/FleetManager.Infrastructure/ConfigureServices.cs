@@ -3,6 +3,7 @@ using FleetManager.Infrastructure.Data;
 using FleetManager.Infrastructure.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 
 namespace FleetManager.Infrastructure
 {
@@ -13,7 +14,7 @@ namespace FleetManager.Infrastructure
 
         {
             services.AddDbContext<FleetDbContext>(options =>
-                options.UseSqlite(configuration.GetConnectionString("FleetManager") ??
+                options.UseSqlServer(configuration.GetConnectionString("FleetManager") ??
                 throw new InvalidOperationException("Connection string 'FleetManagerWebAppContext' not found.")));
 
             services.AddScoped<IFleetManagerRepository, FleetManagerRepository>();
