@@ -14,6 +14,7 @@ namespace FleetManager.Domain.ViewData
     {        
         public int Id { get; set; }
 
+        [DisplayName("Type")]
         public TypeVehicle _Type { get; set; }
 
         public int NumberOfPassengers { get; set; }

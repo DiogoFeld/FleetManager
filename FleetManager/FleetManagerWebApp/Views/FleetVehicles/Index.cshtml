@@ -4,55 +4,49 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="container mt-4">
+    <h1 class="mb-4">Vehicle List</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model._Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumberOfPassengers)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Color)
-            </th>
-               <th>
-                @Html.DisplayNameFor(model => model.ChassisId.Series)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ChassisId.Number)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item._Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfPassengers)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Color)
-            </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ChassisId.Series)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ChassisId.Number)
-                </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <div class="mb-3">
+        <a asp-action="Create" class="btn btn-primary">Create New</a>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model._Type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NumberOfPassengers)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Color)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ChassisId.Series)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ChassisId.Number)
+                </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item._Type)</td>
+                    <td>@Html.DisplayFor(modelItem => item.NumberOfPassengers)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Color)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ChassisId.Series)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ChassisId.Number)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning me-1">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
