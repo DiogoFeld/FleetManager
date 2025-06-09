@@ -6,7 +6,7 @@ Este é um sistema de gerenciamento de frota (Fleet Manager) desenvolvido com AS
 
 Veja abaixo uma prévia da interface do sistema:
 
-![Tela de listagem de veículos](docs/screenshots/index.png)
+(Images/PMConsole.jpg)
 
 ## ⚙️ Funcionalidades principais
 
