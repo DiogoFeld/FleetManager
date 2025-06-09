@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using FleetManager.Domain.Entities;
 using FleetManager.Application.Interfaces;
+using FleetManager.Domain.ViewData;
+using FleetManager.Application.Ultility;
 
 namespace FleetManagerWebApp.Controllers
 {
@@ -23,14 +25,16 @@ namespace FleetManagerWebApp.Controllers
         // GET: FleetVehicles/Create
         public IActionResult Create()
         {
-            return View();
+            return View(); 
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Type,NumberOfPassengers,Color")] Vehicle vehicle)
+        public async Task<IActionResult> Create([Bind("Id,Type,NumberOfPassengers,Color,Number,Series")] ViewVehicle viewVehicle)
         {
+            Vehicle vehicle = ViewVehicleParser.Parse(viewVehicle);
+
             bool result = await _fleetManager.Add(vehicle);
             return RedirectToAction(nameof(Index));
         }

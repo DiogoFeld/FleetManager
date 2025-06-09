@@ -42,6 +42,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Color)
             </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChassisId.Series)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChassisId.Number)
+                </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>

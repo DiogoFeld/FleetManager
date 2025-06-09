@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,9 @@ namespace FleetManager.Domain.Entities
         [Key]
         public int Id { get; set; }
         public ChassisId ChassisId { get; set; }
+
+        [Column("Type")]
+        [DisplayName("Type")]
         public TypeVehicle _Type { get; set; }
 
         [Required]
