@@ -48,11 +48,11 @@ namespace FleetManagerTest
 
         //DELETE
         [Fact]
-        public void FleetVehiclesController_Remove_ReturnsSuccess()
+        public async void FleetVehiclesController_Remove_ReturnsSuccess()
         {
             //Arrange - What do i need to bring in?
             var vehicle = A.Fake<Vehicle>();
-            A.CallTo(_fleetManager.GetById(2)).Equals(vehicle);
+            A.CallTo(await _fleetManager.GetById(2)).Equals(vehicle);
             //Act
             var result = _fleetVehiclesController.Delete(2);
             //Assert - Object check actions
@@ -73,8 +73,6 @@ namespace FleetManagerTest
             //Assert - Object check actions
             Assert.IsType<Task<IActionResult>>(result);
         }
-
-
 
 
     }

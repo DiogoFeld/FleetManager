@@ -22,6 +22,8 @@ Este é um sistema de gerenciamento de frota (Fleet Manager) desenvolvido com AS
 Antes de rodar o projeto, é necessário garantir que o banco de dados está atualizado com a estrutura mais recente. Para isso:
 
 Foi ultilizado o SQL SERVER para operações de CRUD, é necessario criar base de dados chamada "FleetManager" e depois seguir os comandos a seguir:
+Abaixo é possivel ver o SQLServer com a base:
+![alt text](https://github.com/DiogoFeld/FleetManager/blob/main/Images/DbName.png)
 
 1. Abra o terminal na pasta raiz do projeto (onde está o arquivo `.csproj`).
 2. Execute os seguintes comandos:
